@@ -63,8 +63,6 @@ In production, set up an actual Postgres instance. To set it up locally at local
    # Network configuration (optional)
    USE_TESTNET=false  # Set to true to use testnet instead of mainnet
    HAS_LOCAL_NODE=false  # Set to true if running a local rippled node
-   LOCAL_NODE_RPC_URL=http://127.0.0.1:5005  # Only needed if HAS_LOCAL_NODE=true
-   LOCAL_NODE_WS_URL=ws://127.0.0.1:6006     # Only needed if HAS_LOCAL_NODE=true
    ```
 
 7. **Set Up Node and Initialize Database**

@@ -89,9 +89,6 @@ def setup_badhabits_node():
         RuntimeConfig.USE_TESTNET = os.getenv('USE_TESTNET', 'false').lower() == 'true'
         RuntimeConfig.HAS_LOCAL_NODE = os.getenv('HAS_LOCAL_NODE', 'false').lower() == 'true'
         RuntimeConfig.USE_OPENROUTER_AUTOROUTER = False  # Disable OpenRouter requirement
-        if RuntimeConfig.HAS_LOCAL_NODE:
-            RuntimeConfig.LOCAL_NODE_RPC_URL = os.getenv('LOCAL_NODE_RPC_URL', 'http://127.0.0.1:5005')
-            RuntimeConfig.LOCAL_NODE_WS_URL = os.getenv('LOCAL_NODE_WS_URL', 'ws://127.0.0.1:6006')
 
         # Run our modified setup_node_auto
         setup_node_auto_no_remembrancer()
