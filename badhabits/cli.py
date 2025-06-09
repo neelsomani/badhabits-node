@@ -43,6 +43,8 @@ async def main():
             credential_manager=credential_manager,
             db_connection_manager=db_connection_manager
         )
+        # FIXME: Duplicate Dependencies object is created in nodetools
+        container.transaction_orchestrator.dependencies = container.dependencies
         
         # Start the node
         container.start()
