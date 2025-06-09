@@ -32,10 +32,10 @@ async def main():
             return
 
         # Initialize the service container
-        container = ServiceContainer()
-        
-        # Register our business logic
-        container.register_business_logic(BadHabitsRules.create())
+        container = ServiceContainer.initialize(
+            business_logic=BadHabitsRules.create(),
+            notifications=True
+        )
         
         # Start the node
         await container.start()
@@ -46,10 +46,12 @@ async def main():
             
     except KeyboardInterrupt:
         logger.info("Shutting down Bad Habits Tracking Node...")
-        await container.stop()
+        if 'container' in locals():
+            await container.stop()
     except Exception as e:
         logger.error(f"Error running Bad Habits Tracking Node: {e}")
-        await container.stop()
+        if 'container' in locals():
+            await container.stop()
         sys.exit(1)
 
 if __name__ == "__main__":

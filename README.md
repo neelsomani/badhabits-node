@@ -25,10 +25,10 @@ In production, set up an actual Postgres instance. To set it up locally at local
    sudo systemctl start postgresql
    sudo systemctl enable postgresql
 
-   # Create database and user
+   # Create database and role
    sudo -u postgres psql -c "CREATE DATABASE badhabits;"
-   sudo -u postgres psql -c "CREATE USER badhabits WITH ENCRYPTED PASSWORD 'your_password';"
-   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE badhabits TO badhabits;"
+   sudo -u postgres psql -c "CREATE USER postfiat WITH ENCRYPTED PASSWORD 'your_password';"
+   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE badhabits TO postfiat;"
    ```
 
 3. **Clone the Repository**
@@ -54,9 +54,11 @@ In production, set up an actual Postgres instance. To set it up locally at local
    # Required variables
    NODE_NAME=badhabits
    PFT_XRP_SECRET=your_xrp_private_key
-   DATABASE_URL=postgresql://badhabits:your_password@localhost:5432/badhabits
+   DATABASE_URL=postgresql://postfiat:your_password@localhost:5432/badhabits
    OPENAI_API_KEY=your_openai_api_key
    ENCRYPTION_PASSWORD=your_encryption_password
+   AUTO=true
+   NETWORK=mainnet  # Set to mainnet or testnet
 
    # Network configuration (optional)
    USE_TESTNET=false  # Set to true to use testnet instead of mainnet
@@ -69,8 +71,7 @@ In production, set up an actual Postgres instance. To set it up locally at local
    First, run the setup script to configure credentials:
    ```bash
    python -m badhabits.cli --setup
-   ```
-   Then initialize the database:
+   ```   Then initialize the database:
    ```bash
    nodetools init-db --create-db
    ```
@@ -105,3 +106,6 @@ The node will:
 2. Process the habit data
 3. Generate personalized recommendations
 4. Send an encrypted response using the same ECDH encryption
+
+
+
