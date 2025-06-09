@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from nodetools.container.service_container import ServiceContainer
 from badhabits.node.process_memos import BadHabitsRules
 from badhabits.setup_node import setup_badhabits_node
+from nodetools.ai.openai import OpenAIRequestTool
 
 load_dotenv()
 
@@ -35,6 +36,12 @@ async def main():
         container = ServiceContainer.initialize(
             business_logic=BadHabitsRules.create(),
             notifications=True
+        )
+        credential_manager = container.dependencies.credential_manager
+        db_connection_manager = container.db_connection_manager
+        container.dependencies.openai = OpenAIRequestTool(
+            credential_manager=credential_manager,
+            db_connection_manager=db_connection_manager
         )
         
         # Start the node
