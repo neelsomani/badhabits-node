@@ -6,10 +6,13 @@ import sys
 import asyncio
 import argparse
 from loguru import logger
+from dotenv import load_dotenv
 
 from nodetools.container.service_container import ServiceContainer
 from badhabits.node.process_memos import BadHabitsRules
 from badhabits.setup_node import setup_badhabits_node
+
+load_dotenv()
 
 def parse_args():
     """Parse command line arguments"""

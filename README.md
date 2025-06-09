@@ -5,7 +5,7 @@ A Post Fiat node for tracking and analyzing personal habits, built on the nodeto
 ## System Requirements
 
 - Ubuntu 22.04 LTS or later
-- Python 3.13 or later
+- Python 3.12 or later
 - PostgreSQL 14 or later
 - 2GB RAM minimum
 - 20GB storage minimum
@@ -15,33 +15,46 @@ A Post Fiat node for tracking and analyzing personal habits, built on the nodeto
 1. **Install System Dependencies**
    ```bash
    sudo apt update
-   sudo apt install -y python3.13 python3.13-venv python3-pip postgresql postgresql-contrib
+   sudo apt install -y python3.12 python3.12-venv python3-pip postgresql postgresql-contrib
    ```
 
-2. **Clone the Repository**
+2. **Set Up PostgreSQL**
+In production, set up an actual Postgres instance. To set it up locally at localhost:5432:
    ```bash
-   git clone https://github.com/neelsomani/badhabits.git
-   cd badhabits
+   # Start PostgreSQL service
+   sudo systemctl start postgresql
+   sudo systemctl enable postgresql
+
+   # Create database and user
+   sudo -u postgres psql -c "CREATE DATABASE badhabits;"
+   sudo -u postgres psql -c "CREATE USER badhabits WITH ENCRYPTED PASSWORD 'your_password';"
+   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE badhabits TO badhabits;"
    ```
 
-3. **Create and Activate Virtual Environment**
+3. **Clone the Repository**
    ```bash
-   python3 -m venv venv
+   git clone https://github.com/neelsomani/badhabits-node.git
+   cd badhabits-node
+   ```
+
+4. **Create and Activate Virtual Environment**
+   ```bash
+   python3.12 -m venv venv
    source venv/bin/activate
    ```
 
-4. **Install Python Dependencies**
+5. **Install Python Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Set Up Environment Variables**
+6. **Set Up Environment Variables**
    Create a `.env` file in the project root:
    ```bash
    # Required variables
    NODE_NAME=badhabits
-   PFT_XRP_WALLET=your_xrp_wallet_address
-   DATABASE_URL=postgresql://username:password@localhost:5432/badhabits
+   PFT_XRP_SECRET=your_xrp_private_key
+   DATABASE_URL=postgresql://badhabits:your_password@localhost:5432/badhabits
    OPENAI_API_KEY=your_openai_api_key
    ENCRYPTION_PASSWORD=your_encryption_password
 
@@ -52,14 +65,14 @@ A Post Fiat node for tracking and analyzing personal habits, built on the nodeto
    LOCAL_NODE_WS_URL=ws://127.0.0.1:6006     # Only needed if HAS_LOCAL_NODE=true
    ```
 
-6. **Initialize Database**
-   ```bash
-   nodetools init-db --create-db
-   ```
-
-7. **Set Up Node**
+7. **Set Up Node and Initialize Database**
+   First, run the setup script to configure credentials:
    ```bash
    python -m badhabits.cli --setup
+   ```
+   Then initialize the database:
+   ```bash
+   nodetools init-db --create-db
    ```
 
 ## Running the Node
