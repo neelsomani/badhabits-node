@@ -1,6 +1,6 @@
 # Bad Habits Tracking Node
 
-A Post-Fiat node for tracking and analyzing personal habits, built on the nodetools framework. The node provides encrypted, private analysis of habit data using AI to help users break bad habits.
+A Post Fiat node for tracking and analyzing personal habits, built on the nodetools framework. The node provides encrypted, private analysis of habit data using AI to help users break bad habits.
 
 ## System Requirements
 
@@ -38,11 +38,18 @@ A Post-Fiat node for tracking and analyzing personal habits, built on the nodeto
 5. **Set Up Environment Variables**
    Create a `.env` file in the project root:
    ```bash
+   # Required variables
    NODE_NAME=badhabits
    PFT_XRP_WALLET=your_xrp_wallet_address
    DATABASE_URL=postgresql://username:password@localhost:5432/badhabits
    OPENAI_API_KEY=your_openai_api_key
    ENCRYPTION_PASSWORD=your_encryption_password
+
+   # Network configuration (optional)
+   USE_TESTNET=false  # Set to true to use testnet instead of mainnet
+   HAS_LOCAL_NODE=false  # Set to true if running a local rippled node
+   LOCAL_NODE_RPC_URL=http://127.0.0.1:5005  # Only needed if HAS_LOCAL_NODE=true
+   LOCAL_NODE_WS_URL=ws://127.0.0.1:6006     # Only needed if HAS_LOCAL_NODE=true
    ```
 
 6. **Initialize Database**

@@ -26,10 +26,17 @@ def setup_badhabits_node():
         if missing_vars:
             raise ValueError(f"Missing required environment variables: {', '.join(missing_vars)}")
 
+        # Configure network settings
+        RuntimeConfig.USE_TESTNET = os.getenv('USE_TESTNET', 'false').lower() == 'true'
+        RuntimeConfig.HAS_LOCAL_NODE = os.getenv('HAS_LOCAL_NODE', 'false').lower() == 'true'
+        if RuntimeConfig.HAS_LOCAL_NODE:
+            RuntimeConfig.LOCAL_NODE_RPC_URL = os.getenv('LOCAL_NODE_RPC_URL', 'http://127.0.0.1:5005')
+            RuntimeConfig.LOCAL_NODE_WS_URL = os.getenv('LOCAL_NODE_WS_URL', 'ws://127.0.0.1:6006')
+
         # Set up node configuration
         node_config = NodeConfig(
             node_name=os.getenv('NODE_NAME'),
-            network=NetworkType('mainnet'),
+            network=NetworkType('mainnet' if not RuntimeConfig.USE_TESTNET else 'testnet'),
             node_address=os.getenv('PFT_XRP_WALLET'),
             encryption_password=os.getenv('ENCRYPTION_PASSWORD')
         )
