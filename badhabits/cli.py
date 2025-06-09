@@ -38,7 +38,7 @@ async def main():
         )
         
         # Start the node
-        await container.start()
+        container.start()
         
         # Keep the node running
         while True:
@@ -47,11 +47,11 @@ async def main():
     except KeyboardInterrupt:
         logger.info("Shutting down Bad Habits Tracking Node...")
         if 'container' in locals():
-            await container.stop()
+            container.stop()
     except Exception as e:
         logger.error(f"Error running Bad Habits Tracking Node: {e}")
         if 'container' in locals():
-            await container.stop()
+            container.stop()
         sys.exit(1)
 
 if __name__ == "__main__":
