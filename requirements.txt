@@ -1,4 +1,4 @@
-nodetools @ git+https://github.com/postfiatorg/nodetools.git
+nodetools @ git+https://github.com/neelsomani/nodetools.git@bugfix/local-node
 loguru>=0.7.0
 openai>=1.0.0
 python-dotenv>=1.0.0 
