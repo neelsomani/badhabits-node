@@ -71,7 +71,8 @@ In production, set up an actual Postgres instance. To set it up locally at local
    First, run the setup script to configure credentials:
    ```bash
    python -m badhabits.cli --setup
-   ```   Then initialize the database:
+   ```
+   Then initialize the database:
    ```bash
    nodetools init-db --create-db
    ```
