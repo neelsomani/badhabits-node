@@ -10,17 +10,6 @@ A Post Fiat node for tracking and analyzing personal habits, built on the nodeto
 - 2GB RAM minimum
 - 20GB storage minimum
 
-## Note on AWS
-
-To run rippled locally, you must open port 51235 in your security group.
-
-Then add the following to your /etc/opt/ripple/rippled.cfg:
-```
-[overlay]
-# Replace with your current EC2 public v4 address
-public_ip = XX.XXX.XXX.XX
-```
-
 ## Setup Instructions
 
 1. **Install System Dependencies**
@@ -116,3 +105,6 @@ The node will:
 2. Process the habit data
 3. Generate personalized recommendations
 4. Send an encrypted response using the same ECDH encryption
+
+
+
