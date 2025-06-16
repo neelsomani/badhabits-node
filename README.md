@@ -50,7 +50,8 @@ In production, set up an actual Postgres instance. To set it up locally at local
    ```
 
 7. **Set Up Environment Variables**
-   Create a `.env` file in the project root:
+
+Create a `.env` file in the project root:
    ```bash
    # Required variables
    NODE_NAME=badhabits
@@ -66,8 +67,9 @@ In production, set up an actual Postgres instance. To set it up locally at local
    HAS_LOCAL_NODE=false  # Set to true if running a local rippled node
    ```
 
-8. **Set Up Node and Initialize Database**
-   First, run the setup script to configure credentials:
+9. **Set Up Node and Initialize Database**
+
+First, run the setup script to configure credentials:
    ```bash
    python -m badhabits.cli --setup
    ```
