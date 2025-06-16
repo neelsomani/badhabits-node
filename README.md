@@ -19,6 +19,7 @@ A Post Fiat node for tracking and analyzing personal habits, built on the nodeto
    ```
 
 2. **Set Up PostgreSQL**
+
 In production, set up an actual Postgres instance. To set it up locally at localhost:5432:
    ```bash
    # Start PostgreSQL service
@@ -31,24 +32,24 @@ In production, set up an actual Postgres instance. To set it up locally at local
    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE badhabits TO postfiat;"
    ```
 
-3. **Clone the Repository**
+4. **Clone the Repository**
    ```bash
    git clone https://github.com/neelsomani/badhabits-node.git
    cd badhabits-node
    ```
 
-4. **Create and Activate Virtual Environment**
+5. **Create and Activate Virtual Environment**
    ```bash
    python3.12 -m venv venv
    source venv/bin/activate
    ```
 
-5. **Install Python Dependencies**
+6. **Install Python Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-6. **Set Up Environment Variables**
+7. **Set Up Environment Variables**
    Create a `.env` file in the project root:
    ```bash
    # Required variables
@@ -65,7 +66,7 @@ In production, set up an actual Postgres instance. To set it up locally at local
    HAS_LOCAL_NODE=false  # Set to true if running a local rippled node
    ```
 
-7. **Set Up Node and Initialize Database**
+8. **Set Up Node and Initialize Database**
    First, run the setup script to configure credentials:
    ```bash
    python -m badhabits.cli --setup
